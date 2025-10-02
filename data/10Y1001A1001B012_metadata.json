@@ -1,0 +1,18 @@
+{
+  "zone": "10Y1001A1001B012",
+  "source": "ENTSO-E Transparency Platform",
+  "retrieval_time": "2025-10-02T07:39:30.398055+00:00",
+  "period": {
+    "start": "2025-09-01",
+    "end": "2025-09-30"
+  },
+  "normalized_to_kWh": true,
+  "timezone": "Europe/Nicosia",
+  "columns": [
+    "timestamp",
+    "price_EUR_MWh",
+    "price_EUR_kWh",
+    "timestamp_utc",
+    "timestamp_cy"
+  ]
+}
