@@ -1,0 +1,7 @@
+requests
+pandas
+pyarrow   # optional, for Parquet export
+matplotlib
+seaborn
+pytz
+python-dateutil

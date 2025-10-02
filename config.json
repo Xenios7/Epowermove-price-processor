@@ -1,0 +1,10 @@
+{
+  "api_token": "YOUR_ENTSOE_API_TOKEN",
+  "country_code": "CY", 
+  "start_date": "2025-09-01",
+  "end_date": "2025-09-30",
+  "normalize_to_kwh": true,
+  "export_format": "csv", 
+  "timezone": "Europe/Nicosia",
+  "make_plots": true
+}
