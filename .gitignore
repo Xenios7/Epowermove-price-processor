@@ -1,0 +1,18 @@
+
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+
+# Environments
+.env
+venv/
+
+# Data outputs
+data/*.csv
+data/*.parquet
+
+# API tokens or secrets
+config.json
+
+# Notebook checkpoints, etc
+.ipynb_checkpoints/
