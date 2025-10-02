@@ -1,0 +1,19 @@
+{
+  "zone": "10YFR-RTE------C",
+  "source": "ENTSO-E Transparency Platform",
+  "retrieval_time": "2025-10-02T09:45:43.852275+00:00",
+  "period": {
+    "start": "202509290000",
+    "end": "202510030000"
+  },
+  "normalized_to_kWh": true,
+  "timezone": "Europe/Paris",
+  "columns": [
+    "timestamp",
+    "price_EUR_MWh",
+    "price_EUR_kWh",
+    "timestamp_utc",
+    "timestamp_local"
+  ],
+  "record_count": 238
+}

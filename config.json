@@ -1,10 +1,10 @@
 {
-  "ENTSOE_API_KEY": "cfe924c5-3878-4d9e-98ce-524f56d0d8b7",
-  "zone_code": "10YCY-TSO------Q",
-  "start_date": "2025-09-01",
-  "end_date": "2025-09-30",
+  "api_token": "cfe924c5-3878-4d9e-98ce-524f56d0d8b7",
+  "country_code": "FR",
+  "start_date": "2025-09-29",
+  "end_date": "2025-10-02",
   "normalize_to_kwh": true,
   "export_format": "csv",
-  "timezone": "Europe/Nicosia",
+  "timezone": "Europe/Paris",
   "make_plots": true
 }
