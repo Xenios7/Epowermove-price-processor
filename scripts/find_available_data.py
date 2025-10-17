@@ -24,7 +24,7 @@ API_KEY = config.get("api_token", "")
 def test_api_key():
     """Test if API key is valid"""
     print("=" * 70)
-    print("🔑 TESTING API KEY VALIDITY")
+    print(" TESTING API KEY VALIDITY")
     print("=" * 70)
     
     url = "https://web-api.tp.entsoe.eu/api"
@@ -44,30 +44,30 @@ def test_api_key():
     
     try:
         r = requests.get(url, params=params, timeout=10)
-        print(f"📡 Status Code: {r.status_code}")
-        print(f"🔗 Test URL: {r.url[:100]}...")
+        print(f" Status Code: {r.status_code}")
+        print(f"🔗Test URL: {r.url[:100]}...")
         
         if r.status_code == 200:
-            print("✅ API key is valid and working!")
+            print(" API key is valid and working!")
             return True
         elif r.status_code == 401:
-            print("❌ API key is INVALID or EXPIRED")
+            print("API key is INVALID or EXPIRED")
             print("   → Get a new key at: https://transparency.entsoe.eu/")
             return False
         else:
-            print(f"⚠️  Unexpected status code: {r.status_code}")
+            print(f"Unexpected status code: {r.status_code}")
             print(f"Response preview: {r.text[:500]}")
             return False
             
     except Exception as e:
-        print(f"❌ Connection error: {e}")
+        print(f" Connection error: {e}")
         return False
 
 
 def test_multiple_zones():
     """Test data availability across multiple zones"""
     print("\n" + "=" * 70)
-    print("🌍 TESTING MULTIPLE ZONES")
+    print(" TESTING MULTIPLE ZONES")
     print("=" * 70)
     
     # Test with a date that should have data (a week ago)
@@ -97,7 +97,7 @@ def test_multiple_zones():
             results.append((country, zone, has_data))
             print(f"{status} {country:3} ({zone[:10]}...): {'Data available' if has_data else 'No data'}")
         except Exception as e:
-            print(f"⚠️  {country:3}: Error - {str(e)[:50]}")
+            print(f"{country:3}: Error - {str(e)[:50]}")
             results.append((country, zone, False))
     
     # Summary
@@ -105,17 +105,17 @@ def test_multiple_zones():
     print(f"\n📊 Summary: {len(available)}/{len(ZONE_CODES)} zones have data")
     
     if available:
-        print(f"✅ Zones with data: {', '.join(available)}")
+        print(f"Zones with data: {', '.join(available)}")
         return available
     else:
-        print("❌ No data found in any zone!")
+        print("No data found in any zone!")
         return []
 
 
 def test_date_range(zone, country_code):
     """Test a range of dates to find what works"""
     print("\n" + "=" * 70)
-    print(f"📅 TESTING DATE RANGE FOR {country_code}")
+    print(f"TESTING DATE RANGE FOR {country_code}")
     print("=" * 70)
     
     url = "https://web-api.tp.entsoe.eu/api"
@@ -152,15 +152,15 @@ def test_date_range(zone, country_code):
             has_data = r.status_code == 200 and "<Acknowledgement_MarketDocument" not in r.text
             
             if has_data:
-                status = "✅ FOUND"
+                status = " FOUND"
                 print(f"{status} {label:15} ({test_date.strftime('%Y-%m-%d')})")
                 return test_date
             else:
-                status = "❌"
+                status = ""
                 print(f"{status} {label:15} ({test_date.strftime('%Y-%m-%d')})")
                 
         except Exception as e:
-            print(f"⚠️  {label:15}: Error - {str(e)[:50]}")
+            print(f"  {label:15}: Error - {str(e)[:50]}")
     
     return None
 
@@ -168,7 +168,7 @@ def test_date_range(zone, country_code):
 def detailed_api_response(zone, date):
     """Show detailed API response for debugging"""
     print("\n" + "=" * 70)
-    print("🔍 DETAILED API RESPONSE")
+    print("DETAILED API RESPONSE")
     print("=" * 70)
     
     url = "https://web-api.tp.entsoe.eu/api"
@@ -186,36 +186,36 @@ def detailed_api_response(zone, date):
     
     try:
         r = requests.get(url, params=params, timeout=10)
-        print(f"📡 URL: {r.url}")
-        print(f"🔑 Status: {r.status_code}")
-        print(f"📏 Response size: {len(r.text)} bytes")
-        print(f"\n📄 First 1000 characters of response:")
+        print(f" URL: {r.url}")
+        print(f" Status: {r.status_code}")
+        print(f" Response size: {len(r.text)} bytes")
+        print(f"\n First 1000 characters of response:")
         print("-" * 70)
         print(r.text[:1000])
         print("-" * 70)
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f" Error: {e}")
 
 
 if __name__ == "__main__":
     if not API_KEY:
-        print("❌ No API key found in config.json")
+        print(" No API key found in config.json")
         exit(1)
     
-    print("\n🔧 ENTSO-E API DIAGNOSTIC TOOL\n")
-    print(f"🔑 Using API key: {API_KEY[:20]}...")
+    print("\n ENTSO-E API DIAGNOSTIC TOOL\n")
+    print(f" Using API key: {API_KEY[:20]}...")
     
     # Step 1: Test API key
     if not test_api_key():
-        print("\n❌ API key test failed. Please check your API key.")
+        print("\n API key test failed. Please check your API key.")
         exit(1)
     
     # Step 2: Test multiple zones
     available_zones = test_multiple_zones()
     
     if not available_zones:
-        print("\n💡 TROUBLESHOOTING SUGGESTIONS:")
+        print("\n TROUBLESHOOTING SUGGESTIONS:")
         print("   1. Your API key might be new and not yet activated")
         print("   2. There might be temporary API issues")
         print("   3. Check ENTSO-E status: https://transparency.entsoe.eu/")
@@ -223,17 +223,17 @@ if __name__ == "__main__":
         exit(1)
     
     # Step 3: Test date ranges for available zones
-    print(f"\n✅ Testing date ranges for available zones...")
+    print(f"\n Testing date ranges for available zones...")
     
     for country in available_zones[:3]:  # Test first 3 available
         zone = ZONE_CODES[country]
         found_date = test_date_range(zone, country)
         
         if found_date:
-            print(f"\n🎯 SUCCESS! Found data for {country} on {found_date.strftime('%Y-%m-%d')}")
+            print(f"\n SUCCESS! Found data for {country} on {found_date.strftime('%Y-%m-%d')}")
             detailed_api_response(zone, found_date)
             
-            print(f"\n📝 RECOMMENDED CONFIG FOR {country}:")
+            print(f"\n RECOMMENDED CONFIG FOR {country}:")
             print("-" * 70)
             safe_start = found_date - timedelta(days=3)
             safe_end = found_date
